@@ -1,0 +1,16 @@
+{
+  "name": "vue-cli-plugin-store",
+  "version": "1.0.0",
+  "description": "Vue CLI plugin for vuex",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pksunkara/vue-cli-plugin-store.git"
+  },
+  "author": "Pavan Kumar Sunkara <pavan.sss1991@gmail.com> (pksunkara.github.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pksunkara/vue-cli-plugin-store/issues"
+  },
+  "homepage": "https://github.com/pksunkara/vue-cli-plugin-store#readme"
+}
