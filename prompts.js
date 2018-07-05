@@ -9,7 +9,7 @@ module.exports = [
     name: 'persist',
     type: 'confirm',
     message: 'Persist the vuex state?',
-    default: true,
+    default: false,
   },
   {
     when: answers => answers.name !== '',
