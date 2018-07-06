@@ -1,10 +1,10 @@
 const fs = require('fs');
+const recast = require('recast');
 
 module.exports = (api, options, rootOptions) => {
   // TODO: Typescript support
   // TODO: Post process lint
   // TODO: pluginOptions.store.folder? (How to add them in preset)
-  // TODO: Add in modules of store/index.js (https://github.com/paulgv/vue-cli-plugin-vuex-module-generator/blob/master/generator/index.js)
   // TODO: Allow creation of individual action/mutation/getter
   // TODO: Option for constants for mutation types
 
@@ -29,7 +29,7 @@ module.exports = (api, options, rootOptions) => {
     api.render('./template/init');
   } else {
     if (fs.existsSync(`src/store/${options.name}.js`) || fs.existsSync(`src/store/${options.name}/index.js`)) {
-      console.warn(`Module ${options.name} already exists`);
+      console.warn(`\nModule ${options.name} already exists`);
       return
     }
 
@@ -47,10 +47,27 @@ module.exports = (api, options, rootOptions) => {
         [`src/store/${options.name}.js`]: 'template/module/index.js',
       });
     }
-  }
 
-  if (api.invoking && api.hasPlugin('eslint')) {
-    const lint = require('@vue/cli-plugin-eslint/lint');
-    lint({ silent: true }, api);
+    api.postProcessFiles(files => {
+      const ast = recast.parse(files['src/store/index.js']);
+      const property = recast.parse(`({${options.name}})`).program.body[0].expression.properties[0];
+
+      recast.types.visit(ast, {
+        visitNewExpression ({ node }) {
+          if (node.callee.type === 'MemberExpression' && node.callee.object.name === 'Vuex' && node.callee.property.name === 'Store') {
+            const options = node.arguments[0];
+
+            if (options && options.type === 'ObjectExpression') {
+              const index = options.properties.findIndex(p => p.key.name === 'modules');
+              options.properties[index].value.properties.push(property);
+            }
+          }
+
+          return false;
+        }
+      });
+
+      files['src/store/index.js'] = recast.print(ast).code;
+    });
   }
 }
