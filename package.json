@@ -1,6 +1,6 @@
 {
   "name": "vue-cli-plugin-store",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Vue CLI plugin for vuex",
   "main": "index.js",
   "repository": {

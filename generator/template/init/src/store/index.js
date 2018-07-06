@@ -6,8 +6,8 @@ Vue.use(Vuex)
 
 /* eslint-disable no-new */
 const store = new Vuex.Store({
-  <% if (options.persist) { %>plugins: [createPersistedState()],<% } %>
-  modules: {
+<% if (options.persist) { %>  plugins: [createPersistedState()],
+<% } %>  modules: {
   }
 })
 
