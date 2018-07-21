@@ -5,7 +5,7 @@ Vue CLI plugin for vuex
 ## Installation
 
 ```
-$ vue add  store
+$ vue add store
 ```
 
 ## Usage

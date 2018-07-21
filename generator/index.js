@@ -8,7 +8,7 @@ module.exports = (api, options, rootOptions) => {
   // TODO: Allow creation of individual action/mutation/getter
   // TODO: Option for constants for mutation types
 
-  if (options.name === '') {
+  if (options.type === 'init') {
     api.injectImports(api.entryFile, `import store from './store'`);
     api.injectRootOptions(api.entryFile, 'store');
 

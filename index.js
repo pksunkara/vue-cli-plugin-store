@@ -1,2 +1,1 @@
-module.exports = (api, projectOptions) => {
-}
+module.exports = (api, projectOptions) => {};
