@@ -19,7 +19,7 @@ module.exports = [
     name: 'name',
     type: 'input',
     message: 'Name of the module?',
-    validate: input => input !== '' ? true : 'Name is required.',
+    validate: input => (input !== '' ? true : 'Name is required.'),
   },
   {
     when: answers => answers.type === 'init',

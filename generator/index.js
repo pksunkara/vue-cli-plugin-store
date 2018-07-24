@@ -30,8 +30,9 @@ module.exports = (api, options, rootOptions) => {
     api.render('./template/init');
   } else {
     if (fs.existsSync(`src/store/${options.name}.js`) || fs.existsSync(`src/store/${options.name}/index.js`)) {
+      // eslint-disable-next-line no-console
       console.warn(`\nModule ${options.name} already exists`);
-      return
+      return;
     }
 
     api.injectImports('src/store/index.js', `import ${options.name} from './${options.name}'`);
@@ -49,25 +50,26 @@ module.exports = (api, options, rootOptions) => {
       });
     }
 
-    api.postProcessFiles(files => {
+    api.postProcessFiles((files) => {
       const ast = recast.parse(files['src/store/index.js']);
       const property = recast.parse(`({${options.name}})`).program.body[0].expression.properties[0];
 
       recast.types.visit(ast, {
-        visitNewExpression ({ node }) {
+        visitNewExpression({ node }) {
           if (node.callee.type === 'MemberExpression' && node.callee.object.name === 'Vuex' && node.callee.property.name === 'Store') {
-            const options = node.arguments[0];
+            const opts = node.arguments[0];
 
-            if (options && options.type === 'ObjectExpression') {
-              const index = options.properties.findIndex(p => p.key.name === 'modules');
-              options.properties[index].value.properties.push(property);
+            if (opts && opts.type === 'ObjectExpression') {
+              const index = opts.properties.findIndex(p => p.key.name === 'modules');
+              opts.properties[index].value.properties.push(property);
             }
           }
 
           return false;
-        }
+        },
       });
 
+      // eslint-disable-next-line no-param-reassign
       files['src/store/index.js'] = recast.print(ast).code;
     });
   }
