@@ -7,7 +7,12 @@
     "type": "git",
     "url": "git+https://github.com/pksunkara/vue-cli-plugin-store.git"
   },
-  "keywords": ["vue", "vue-cli", "vuex", "store"],
+  "keywords": [
+    "vue",
+    "vue-cli",
+    "vuex",
+    "store"
+  ],
   "author": "Pavan Kumar Sunkara <pavan.sss1991@gmail.com> (pksunkara.github.com)",
   "license": "MIT",
   "bugs": {
