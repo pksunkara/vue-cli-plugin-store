@@ -5,5 +5,6 @@ module.exports = (api, options, rootOptions) => {
   // TODO: Allow creation of individual action/mutation/getter
   // TODO: Option for constants for mutation types
 
+  // eslint-disable-next-line global-require, import/no-dynamic-require
   require(`./${options.type}`)(api, options, rootOptions);
 };

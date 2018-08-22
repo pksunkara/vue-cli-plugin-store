@@ -3,6 +3,9 @@
   "version": "0.0.6",
   "description": "Vue CLI plugin for vuex",
   "main": "index.js",
+  "scripts": {
+    "lint": "eslint ."
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pksunkara/vue-cli-plugin-store.git"
@@ -21,5 +24,10 @@
   "homepage": "https://github.com/pksunkara/vue-cli-plugin-store#readme",
   "dependencies": {
     "recast": "^0.15.2"
+  },
+  "devDependencies": {
+    "eslint": "^5.4.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0"
   }
 }
