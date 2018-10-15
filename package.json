@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/pksunkara/vue-cli-plugin-store#readme",
   "dependencies": {
-    "recast": "^0.15.2"
+    "recast": "^0.16.0"
   },
   "devDependencies": {
     "eslint": "^5.4.0",
