@@ -4,7 +4,7 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-/* eslint-disable no-new */
+// eslint-disable-next-line no-new
 const store = new Vuex.Store({
 <% if (options.persist) { %>  plugins: [createPersistedState()],
 <% } %>  modules: {
