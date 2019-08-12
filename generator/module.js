@@ -34,7 +34,7 @@ module.exports = (api, options, rootOptions) => {
           const opts = node.arguments[0];
 
           if (opts && opts.type === 'ObjectExpression') {
-            const index = opts.properties.findIndex(p => p.key.name === 'modules');
+            const index = opts.properties.findIndex((p) => p.key.name === 'modules');
             opts.properties[index].value.properties.push(property);
           }
         }
